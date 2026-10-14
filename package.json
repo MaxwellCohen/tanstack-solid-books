@@ -1,0 +1,56 @@
+{
+  "name": "tanstack-solid-books",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev --port 3002",
+    "generate-routes": "tsr generate",
+    "build": "vite build",
+    "start": "node .output/server/index.mjs",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "preview:cloudflare": "CLOUDFLARE=1 pnpm build && wrangler dev",
+    "deploy:cloudflare": "CLOUDFLARE=1 pnpm build && wrangler deploy",
+    "deploy:netlify": "NETLIFY=1 pnpm build && npx --yes netlify deploy --prod --no-build",
+    "deploy:vercel": "NITRO_PRESET=vercel pnpm build && npx --yes vercel deploy --prebuilt --prod --yes"
+  },
+  "dependencies": {
+    "@neon/config": "^1.9.1",
+    "@neon/env": "^1.6.1",
+    "@neondatabase/serverless": "^1.2.0",
+    "@netlify/blobs": "^11.1.4",
+    "@solidjs/web": "2.0.0-rc.8",
+    "@tailwindcss/vite": "^4.1.18",
+    "@tanstack/solid-router": "2.0.0-rc.8",
+    "@tanstack/solid-router-devtools": "2.0.0-rc.6",
+    "@tanstack/solid-start": "2.0.0-rc.8",
+    "@vercel/functions": "^3.10.0",
+    "clsx": "^2.1.1",
+    "dotenv": "^18.0.7",
+    "drizzle-orm": "^0.45.4",
+    "nitro": "3.0.260610-beta",
+    "solid-js": "2.0.0-rc.8",
+    "tailwindcss": "^4.1.18",
+    "thumbhash": "^0.1.1"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.63.2",
+    "@netlify/vite-plugin-tanstack-start": "^1.3.19",
+    "@solidjs/babel-plugin": "2.0.0-rc.8",
+    "@solidjs/compiler": "2.0.0-rc.8",
+    "@solidjs/vite-plugin": "3.0.0-next.43",
+    "@tanstack/devtools-vite": "0.8.5",
+    "@tanstack/router-cli": "^1.133.21",
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.0",
+    "wrangler": "^4.150.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "lightningcss"
+    ]
+  }
+}

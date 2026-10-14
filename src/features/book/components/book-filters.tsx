@@ -1,0 +1,187 @@
+import { useNavigate, useRouterState, useSearch } from "@tanstack/solid-router";
+import { For, createMemo, createSignal } from "solid-js";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Range } from "@/components/ui/range";
+import { Select } from "@/components/ui/select";
+import {
+  LANGUAGES,
+  LISTS,
+  MAX_PAGES,
+  MAX_RATING,
+  MAX_YEAR,
+  MIN_PAGES,
+  MIN_RATING,
+  MIN_YEAR,
+  PAGE_FILTER_VALUES,
+  RATING_FILTER_VALUES,
+  YEAR_FILTER_VALUES,
+} from "@/features/book/book-constants";
+import { withFilters } from "@/lib/url-state";
+import type { SearchParams } from "@/lib/url-state";
+
+function BookFiltersForm(props: {
+  idPrefix: string;
+  initialParams: SearchParams;
+}) {
+  const navigate = useNavigate();
+  const filtering = useRouterState({ select: (state) => state.status === "pending" });
+  const [filters, setFilters] = createSignal(() => props.initialParams);
+
+  const activeCount = createMemo(
+    () =>
+      Object.entries(filters()).filter(
+        ([key, value]) => key !== "page" && key !== "delay" && Boolean(value),
+      ).length,
+  );
+
+  function commit(patch: Partial<SearchParams>) {
+    const next = withFilters(filters(), patch);
+    setFilters(next);
+    void navigate({ to: ".", search: () => next, replace: true, resetScroll: false });
+  }
+
+  function reset() {
+    const delay = filters().delay;
+    const next = delay ? { delay } : {};
+    setFilters(next);
+    void navigate({ to: ".", search: () => next, replace: true, resetScroll: false });
+  }
+
+  return (
+    <div
+      class="flex min-h-0 flex-1 flex-col"
+      data-filtering={filtering() ? "" : undefined}
+    >
+      <div class="min-h-0 flex-1 touch-pan-y [scrollbar-gutter:stable] overflow-x-hidden overflow-y-auto overscroll-contain px-1 pb-6">
+        <div class="flex flex-col gap-6">
+          <Range
+            hint={
+              <>
+                <span>{MIN_YEAR}</span>
+                <span>{MAX_YEAR}</span>
+              </>
+            }
+            id={`${props.idPrefix}-filter-year`}
+            label="Published before"
+            onValueChange={(value) =>
+              commit({ year: value === MAX_YEAR ? undefined : String(value) })
+            }
+            readout={filters().year ? filters().year : "Any year"}
+            value={Number(filters().year ?? MAX_YEAR)}
+            values={YEAR_FILTER_VALUES}
+          />
+
+          <Range
+            hint={
+              <>
+                <span>Any</span>
+                <span>{MAX_RATING} stars</span>
+              </>
+            }
+            id={`${props.idPrefix}-filter-rating`}
+            label="Minimum rating"
+            onValueChange={(value) =>
+              commit({
+                rating: value === MIN_RATING ? undefined : String(value),
+              })
+            }
+            readout={
+              Number(filters().rating) > 0
+                ? `${filters().rating}+ stars`
+                : "Any rating"
+            }
+            value={Number(filters().rating ?? MIN_RATING)}
+            values={RATING_FILTER_VALUES}
+          />
+
+          <Range
+            hint={
+              <>
+                <span>{MIN_PAGES}</span>
+                <span>{MAX_PAGES.toLocaleString()}</span>
+              </>
+            }
+            id={`${props.idPrefix}-filter-pages`}
+            label="Max pages"
+            onValueChange={(value) =>
+              commit({
+                pages: value === MAX_PAGES ? undefined : String(value),
+              })
+            }
+            readout={
+              filters().pages
+                ? `${Number(filters().pages).toLocaleString()} pages`
+                : "Any length"
+            }
+            value={Number(filters().pages ?? MAX_PAGES)}
+            values={PAGE_FILTER_VALUES}
+          />
+
+          <div class="flex flex-col gap-2">
+            <label
+              class="text-muted text-xs font-semibold tracking-wide uppercase"
+              for={`${props.idPrefix}-filter-language`}
+            >
+              Language
+            </label>
+            <Select
+              id={`${props.idPrefix}-filter-language`}
+              onChange={(event) =>
+                commit({ language: event.currentTarget.value || undefined })
+              }
+              value={filters().language ?? "en"}
+            >
+              <For each={LANGUAGES}>
+                {(language) => (
+                  <option value={language.value}>{language.label}</option>
+                )}
+              </For>
+            </Select>
+          </div>
+
+          <fieldset class="flex flex-col gap-2">
+            <legend class="text-muted mb-2 text-xs font-semibold tracking-wide uppercase">
+              Book lists
+            </legend>
+            <For each={LISTS}>
+              {(list) => {
+                const selected = () => filters().list === list.slug;
+                return (
+                  <label class="hover:bg-card dark:hover:bg-card-dark -mx-2 flex cursor-pointer items-center gap-2.5 rounded-md px-2 py-1.5 text-sm transition-colors">
+                    <Input
+                      checked={selected()}
+                      onChange={() =>
+                        commit({ list: selected() ? undefined : list.slug })
+                      }
+                      type="checkbox"
+                      variant="checkbox"
+                    />
+                    {list.name}
+                  </label>
+                );
+              }}
+            </For>
+          </fieldset>
+        </div>
+      </div>
+
+      {activeCount() > 0 ? (
+        <div class="border-divider dark:border-divider-dark border-t pt-3">
+          <Button class="w-full" onClick={reset} variant="secondary">
+            Clear all filters
+          </Button>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+export function BookFiltersFallback(props: { idPrefix: string }) {
+  return <BookFiltersForm idPrefix={props.idPrefix} initialParams={{}} />;
+}
+
+export function BookFilters(props: { idPrefix: string }) {
+  const search = useSearch({ from: "__root__" });
+  return <BookFiltersForm idPrefix={props.idPrefix} initialParams={search()} />;
+}

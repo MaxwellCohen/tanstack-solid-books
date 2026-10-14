@@ -1,0 +1,7 @@
+[build]
+  command = "NETLIFY=1 pnpm build"
+  publish = "dist/client"
+
+[dev]
+  command = "pnpm dev"
+  port = 3002

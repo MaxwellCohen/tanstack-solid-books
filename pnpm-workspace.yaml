@@ -1,0 +1,8 @@
+allowBuilds:
+  esbuild: true
+  lightningcss: true
+  sharp: true
+  workerd: true
+overrides:
+  "@solidjs/babel-plugin": 2.0.0-rc.8
+  "@solidjs/compiler": 2.0.0-rc.8
