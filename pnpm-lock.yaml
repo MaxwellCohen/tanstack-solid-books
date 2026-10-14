@@ -12,6 +12,12 @@ importers:
 
   .:
     dependencies:
+      '@fontsource-variable/geist':
+        specifier: ^5.3.0
+        version: 5.3.0
+      '@fontsource-variable/geist-mono':
+        specifier: ^5.3.0
+        version: 5.3.0
       '@neon/config':
         specifier: ^1.9.1
         version: 1.9.1
@@ -39,6 +45,9 @@ importers:
       '@tanstack/solid-start':
         specifier: 2.0.0-rc.8
         version: 2.0.0-rc.8(@solidjs/web@2.0.0-rc.8(solid-js@2.0.0-rc.8))(crossws@0.4.15(srvx@0.11.22))(esbuild@0.28.2)(rolldown@1.2.13)(solid-js@2.0.0-rc.8)(vite-plugin-solid@2.11.14(solid-js@2.0.0-rc.8)(vite@8.3.4(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1)))(vite@8.3.4(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))
+      '@unpic/solid':
+        specifier: ^1.0.0
+        version: 1.0.0(solid-js@2.0.0-rc.8)
       '@vercel/functions':
         specifier: ^3.10.0
         version: 3.10.0(ws@8.22.0)
@@ -51,6 +60,9 @@ importers:
       drizzle-orm:
         specifier: ^0.45.4
         version: 0.45.4(@electric-sql/pglite@0.3.16)(@neondatabase/serverless@1.2.0)(@opentelemetry/api@1.9.1)
+      ipx:
+        specifier: 4.0.0-beta.1
+        version: 4.0.0-beta.1(@types/node@26.6.5)(unstorage@1.17.5(@netlify/blobs@11.1.4)(@vercel/functions@3.10.0(ws@8.22.0))(db0@0.3.4(@electric-sql/pglite@0.3.16)(drizzle-orm@0.45.4(@electric-sql/pglite@0.3.16)(@neondatabase/serverless@1.2.0)(@opentelemetry/api@1.9.1))))
       nitro:
         specifier: 3.0.260610-beta
         version: 3.0.260610-beta(@electric-sql/pglite@0.3.16)(@netlify/blobs@11.1.4)(@vercel/functions@3.10.0(ws@8.22.0))(chokidar@5.0.0)(dotenv@18.0.7)(drizzle-orm@0.45.4(@electric-sql/pglite@0.3.16)(@neondatabase/serverless@1.2.0)(@opentelemetry/api@1.9.1))(jiti@2.7.0)(lru-cache@11.5.3)(vite@8.3.4(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))(wrangler@4.150.0(@types/node@26.6.5))
@@ -63,6 +75,9 @@ importers:
       thumbhash:
         specifier: ^0.1.1
         version: 0.1.1
+      unpic:
+        specifier: ^4.2.2
+        version: 4.2.2
     devDependencies:
       '@cloudflare/vite-plugin':
         specifier: ^1.63.2
@@ -594,6 +609,12 @@ packages:
 
   '@fastify/busboy@3.2.3':
     resolution: {integrity: sha512-fmo/IKgkenPzz3qTKG+sIUXdF/Kv83AkvvOXJHPTHJeKJbat8SsL1ihUaFaDotqoEl4UZ1Lf8Eb/3vK6eaWX2A==}
+
+  '@fontsource-variable/geist-mono@5.3.0':
+    resolution: {integrity: sha512-vBbuwDEo9AkrqADMXOrlAR3DFcJi4/JxeuU43FoiQERnNwsfXNnvxvReZG02cQKmyk4DZkZdBZX3oTDvy2zBAw==}
+
+  '@fontsource-variable/geist@5.3.0':
+    resolution: {integrity: sha512-j0m+vLQuG5XAYoHtGCVu0spvlGreR3EzpECUVzkFmI1mTVnAO38l/NEPDCFgZ177JxzYJCLSmTQibIiYPilGrA==}
 
   '@humanwhocodes/momoa@2.0.4':
     resolution: {integrity: sha512-RE815I4arJFtt+FVeU1Tgp9/Xvecacji8w/V6XtXsWWH/wz/eNkNbhb+ny/+PlVZjV0rxQpRSQKNKE3lcktHEA==}
@@ -2004,6 +2025,14 @@ packages:
     resolution: {integrity: sha512-zozlN0UA32bSG2zkKAgQyRYSbEISVoyU6vvkKYo2aSny74D8Jh4e+POkJ6Lk0dlezZi5x7TtD+88Xb06IB8nhg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
+  '@unpic/core@1.0.3':
+    resolution: {integrity: sha512-aum9YNVUGso7MjGLD0Rp/08kywCGLqZ03/q6VQBFFakDBOXWEc8D4kPGcZ8v5wEnGRex3lE+++bOuucBp3KJ/w==}
+
+  '@unpic/solid@1.0.0':
+    resolution: {integrity: sha512-aokmADdrmoMLt8N0vDJw6dptbdYsKIKQtrGjYowVhgxYxDjjrTuJA/7JMQDKtcf7Is4xW5xkAWBau7/KceQJxw==}
+    peerDependencies:
+      solid-js: ^1.0.0
+
   '@vercel/cli-config@0.3.1':
     resolution: {integrity: sha512-sISbygqlFXYb8qfPu/+2Cf/A8IjrlAuZePdag3EDQr2PRA455s7UZtl9Ro674CWsB/saBRmz3jEkw0YsQs8OoQ==}
 
@@ -3159,6 +3188,16 @@ packages:
     resolution: {integrity: sha512-7Xnt54Dco7uYkfdAw0r2vCly3z0rSaVhEXMzPvl3FndsTVm5p26j+PO+gyinkYmcsEUvX2Rh7OGK7KzYWRu6BA==}
     hasBin: true
 
+  ipx@4.0.0-beta.1:
+    resolution: {integrity: sha512-y6bt8CakzpsSO/TiiD8j+1oM+BFJs4rCiJyg8SyBiEaOUIhOu6DFX7lwCpZB/RnUzxVNQFqU4c4IL4MzyRcEQQ==}
+    engines: {node: ^20.16.0 || >=22.3.0}
+    hasBin: true
+    peerDependencies:
+      unstorage: '*'
+    peerDependenciesMeta:
+      unstorage:
+        optional: true
+
   iron-webcrypto@1.2.1:
     resolution: {integrity: sha512-feOM6FaSr6rEABp/eDfVseKyTMDt+KGpeB35SkVn9Tyn0CqvVsY3EwI0v5i8nMHyJnzCIQf7nsy3p41TPkJZhg==}
 
@@ -4217,6 +4256,11 @@ packages:
     engines: {node: '>=20.16.0'}
     hasBin: true
 
+  srvx@0.12.8:
+    resolution: {integrity: sha512-7k9HoDhluTlD7UJ+F+OopZoPZXB2J8f/5nW2VMLaB8KsSlZlRQxyyoX0hWEQCxB+F+3ZvB5QX3LqB6xSBRfxQQ==}
+    engines: {node: '>=20.16.0'}
+    hasBin: true
+
   stack-trace@0.0.10:
     resolution: {integrity: sha512-KGzahc7puUKkzyMt+IqAep+TVNbKP+k2Lmwhub39m1AsTSkaDutx56aDCo+HLDzf/D26BIHTJWNiTG1KAJiQCg==}
 
@@ -4445,6 +4489,9 @@ packages:
   unixify@1.0.0:
     resolution: {integrity: sha512-6bc58dPYhCMHHuwxldQxO3RRNZ4eCogZ/st++0+fcC1nr0jiGUtAdBJ2qzmLQWSxbtz42pWt4QQMiZ9HvZf5cg==}
     engines: {node: '>=0.10.0'}
+
+  unpic@4.2.2:
+    resolution: {integrity: sha512-z6T2ScMgRV2y2H8MwwhY5xHZWXhUx/YxtOCGJwfURSl7ypVy4HpLIMWoIZKnnxQa/RKzM0kg8hUh0paIrpLfvw==}
 
   unplugin@3.4.0:
     resolution: {integrity: sha512-9skdIFlCsPdFV7wUfZxNsFInlW+7nJmGu2gkTu0OUhF56aXGsHab9x52/QhdJ4lC7ZDPWTxbiC4ANqVlsuaW3w==}
@@ -5235,6 +5282,10 @@ snapshots:
   '@fastify/accept-negotiator@2.1.1': {}
 
   '@fastify/busboy@3.2.3': {}
+
+  '@fontsource-variable/geist-mono@5.3.0': {}
+
+  '@fontsource-variable/geist@5.3.0': {}
 
   '@humanwhocodes/momoa@2.0.4': {}
 
@@ -6761,6 +6812,15 @@ snapshots:
       '@typescript-eslint/types': 8.71.2
       eslint-visitor-keys: 5.0.1
 
+  '@unpic/core@1.0.3':
+    dependencies:
+      unpic: 4.2.2
+
+  '@unpic/solid@1.0.0(solid-js@2.0.0-rc.8)':
+    dependencies:
+      '@unpic/core': 1.0.3
+      solid-js: 2.0.0-rc.8
+
   '@vercel/cli-config@0.3.1':
     dependencies:
       xdg-app-paths: 5.5.1
@@ -7935,6 +7995,15 @@ snapshots:
       - srvx
       - uploadthing
 
+  ipx@4.0.0-beta.1(@types/node@26.6.5)(unstorage@1.17.5(@netlify/blobs@11.1.4)(@vercel/functions@3.10.0(ws@8.22.0))(db0@0.3.4(@electric-sql/pglite@0.3.16)(drizzle-orm@0.45.4(@electric-sql/pglite@0.3.16)(@neondatabase/serverless@1.2.0)(@opentelemetry/api@1.9.1)))):
+    dependencies:
+      sharp: 0.35.5(@types/node@26.6.5)
+      srvx: 0.12.8
+    optionalDependencies:
+      unstorage: 1.17.5(@netlify/blobs@11.1.4)(@vercel/functions@3.10.0(ws@8.22.0))(db0@0.3.4(@electric-sql/pglite@0.3.16)(drizzle-orm@0.45.4(@electric-sql/pglite@0.3.16)(@neondatabase/serverless@1.2.0)(@opentelemetry/api@1.9.1)))
+    transitivePeerDependencies:
+      - '@types/node'
+
   iron-webcrypto@1.2.1: {}
 
   is-array-buffer@3.0.5:
@@ -9046,6 +9115,8 @@ snapshots:
 
   srvx@0.11.22: {}
 
+  srvx@0.12.8: {}
+
   stack-trace@0.0.10: {}
 
   std-env@4.3.0: {}
@@ -9298,6 +9369,8 @@ snapshots:
   unixify@1.0.0:
     dependencies:
       normalize-path: 2.1.1
+
+  unpic@4.2.2: {}
 
   unplugin@3.4.0(esbuild@0.28.2)(rolldown@1.2.13)(vite@8.3.4(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1)):
     dependencies:

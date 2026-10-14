@@ -1,11 +1,14 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "tanstack-solid-books",
+  "name": "tanstack-solid-books-optimized",
   "compatibility_date": "2026-10-13",
   "compatibility_flags": ["nodejs_compat"],
   "main": "@tanstack/solid-start/server-entry",
   "assets": {
     "directory": "./dist/client"
+  },
+  "images": {
+    "binding": "IMAGES"
   },
   "observability": {
     "enabled": true,

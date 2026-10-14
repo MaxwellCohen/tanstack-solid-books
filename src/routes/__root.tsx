@@ -6,11 +6,12 @@ import {
 } from "@tanstack/solid-router";
 import { HydrationScript, type JSX } from "@solidjs/web";
 import { Loading } from "solid-js";
+import geistLatin from "@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url";
 import { AppFrame } from "@/app-frame";
 import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
 import { validateCatalogSearch } from "@/lib/catalog-search";
-import appCss from "../app.css?url";
+import appCss from "../app.css?inline";
 
 const description =
   "Browse two million Goodreads books with TanStack Start, Solid, streaming search, and URL-driven filters.";
@@ -30,15 +31,16 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: "icon", href: "/favicon.ico" },
-      { rel: "stylesheet", href: appCss },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap",
-      },
       { rel: "preconnect", href: "https://images.gr-assets.com" },
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: geistLatin,
+        crossOrigin: "anonymous",
+      },
     ],
+    styles: [{ children: appCss }],
     scripts: [{ children: themeScript }],
   }),
   shellComponent: RootDocument,

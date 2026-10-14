@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite dev --port 3002",
+    "dev": "vite dev --port 3004",
     "generate-routes": "tsr generate",
     "build": "vite build",
     "start": "node .output/server/index.mjs",
@@ -12,9 +12,11 @@
     "preview:cloudflare": "CLOUDFLARE=1 pnpm build && wrangler dev",
     "deploy:cloudflare": "CLOUDFLARE=1 pnpm build && wrangler deploy",
     "deploy:netlify": "NETLIFY=1 pnpm build && npx --yes netlify deploy --prod --no-build",
-    "deploy:vercel": "NITRO_PRESET=vercel pnpm build && npx --yes vercel deploy --prebuilt --prod --yes"
+    "deploy:vercel": "NITRO_PRESET=vercel pnpm build && node scripts/patch-vercel-images.mjs && npx --yes vercel deploy --prebuilt --prod --yes"
   },
   "dependencies": {
+    "@fontsource-variable/geist": "^5.3.0",
+    "@fontsource-variable/geist-mono": "^5.3.0",
     "@neon/config": "^1.9.1",
     "@neon/env": "^1.6.1",
     "@neondatabase/serverless": "^1.2.0",
@@ -24,14 +26,17 @@
     "@tanstack/solid-router": "2.0.0-rc.8",
     "@tanstack/solid-router-devtools": "2.0.0-rc.6",
     "@tanstack/solid-start": "2.0.0-rc.8",
+    "@unpic/solid": "^1.0.0",
     "@vercel/functions": "^3.10.0",
     "clsx": "^2.1.1",
     "dotenv": "^18.0.7",
     "drizzle-orm": "^0.45.4",
+    "ipx": "4.0.0-beta.1",
     "nitro": "3.0.260610-beta",
     "solid-js": "2.0.0-rc.8",
     "tailwindcss": "^4.1.18",
-    "thumbhash": "^0.1.1"
+    "thumbhash": "^0.1.1",
+    "unpic": "^4.2.2"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.63.2",

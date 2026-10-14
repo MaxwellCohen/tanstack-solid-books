@@ -4,4 +4,7 @@
 
 [dev]
   command = "pnpm dev"
-  port = 3002
+  port = 3004
+
+[images]
+  remote_images = ['https://images\\.gr-assets\\.com/.*', 'https://s\\.gr-assets\\.com/.*']

@@ -1,6 +1,12 @@
 import { createEffect, createMemo, createSignal, onCleanup, Show } from "solid-js";
+import { Image } from "@/components/ui/image";
 import { Skeleton } from "@/components/ui/skeleton";
-import { EMPTY_IMAGE_URL, getLargeBookImageUrl } from "@/features/book/book-constants";
+import {
+  COVER_IMAGE_HEIGHT,
+  COVER_IMAGE_WIDTH,
+  EMPTY_IMAGE_URL,
+  getLargeBookImageUrl,
+} from "@/features/book/book-constants";
 import { loadBookCover } from "@/features/book/book-images";
 import { cn } from "@/lib/utils";
 
@@ -93,14 +99,18 @@ export function BookCover(props: Props) {
         }
       >
         {(src) => (
-          <img
+          <Image
             alt={props.title}
             class="absolute inset-0 h-full w-full object-cover"
             decoding="async"
-            loading={props.priority ? "eager" : "lazy"}
-            fetchpriority={props.priority ? "high" : undefined}
+            layout="constrained"
+            objectFit="cover"
+            priority={props.priority}
             sizes={props.sizes}
             src={src()}
+            unstyled
+            width={COVER_IMAGE_WIDTH}
+            height={COVER_IMAGE_HEIGHT}
             onError={() => setFailed(true)}
           />
         )}
