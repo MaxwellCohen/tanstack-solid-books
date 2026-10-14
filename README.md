@@ -20,10 +20,23 @@ Leave `DATABASE_URL` empty to browse the generated preview catalog. Point it at 
 
 ## Deploy
 
-Vercel/Nitro is the default adapter (`NITRO_PRESET=vercel` on the optimized branch). Set `NETLIFY=1` for Netlify, or `CLOUDFLARE=1` for Cloudflare Workers:
+Production (`main`):
+
+- Vercel: [tanstack-solid-books.vercel.app](https://tanstack-solid-books.vercel.app)
+- Netlify: [tanstack-solid-books.netlify.app](https://tanstack-solid-books.netlify.app)
+- Cloudflare: [tanstack-solid-books.to-email-max.workers.dev](https://tanstack-solid-books.to-email-max.workers.dev)
+
+Optimized (`optimized`):
+
+- Vercel: [tanstack-solid-books-optimized.vercel.app](https://tanstack-solid-books-optimized.vercel.app)
+- Netlify: [tanstack-solid-books-optimized.netlify.app](https://tanstack-solid-books-optimized.netlify.app)
+- Cloudflare: [tanstack-solid-books-optimized.to-email-max.workers.dev](https://tanstack-solid-books-optimized.to-email-max.workers.dev)
+
+Vercel/Nitro is the default adapter (`NITRO_PRESET=vercel` for prebuilt deploys). Set `NETLIFY=1` for Netlify, or `CLOUDFLARE=1` for Cloudflare Workers:
 
 - `pnpm deploy:vercel`
 - `pnpm deploy:netlify`
 - `pnpm deploy:cloudflare`
+- `pnpm preview:cloudflare`
 
 Set `DATABASE_URL` on every host for both branches before first deploy.
