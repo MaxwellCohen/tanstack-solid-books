@@ -7,4 +7,4 @@
   port = 3004
 
 [images]
-  remote_images = ['https://images\\.gr-assets\\.com/.*', 'https://s\\.gr-assets\\.com/.*']
+  remote_images = ['https://images\.gr-assets\.com/.*', 'https://s\.gr-assets\.com/.*']

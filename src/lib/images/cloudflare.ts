@@ -4,7 +4,8 @@ const MAX_DIMENSION = 8192;
 
 const SOURCE_HEADERS = {
   // Goodreads CDN rejects bare server fetches without a UA.
-  "User-Agent": "Mozilla/5.0 (compatible; SolidBooksIPX/1.0; +https://github.com/solidjs)",
+  "User-Agent":
+    "Mozilla/5.0 (compatible; TanStackSolidBooksIPX/1.0; +https://github.com/MaxwellCohen/tanstack-solid-books)",
   Accept: "image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
   Referer: "https://www.goodreads.com/",
 };
@@ -37,10 +38,33 @@ type RuntimeRequest = Request & {
   runtime?: { cloudflare?: { env?: CloudflareEnv } };
 };
 
-export function imagesBinding(request: Request): ImagesBinding | undefined {
+export async function imagesBinding(request: Request): Promise<ImagesBinding | undefined> {
   const fromRequest = (request as RuntimeRequest).runtime?.cloudflare?.env?.IMAGES;
   if (fromRequest) return fromRequest;
-  return (globalThis as { __env__?: CloudflareEnv }).__env__?.IMAGES;
+
+  const fromGlobal = (globalThis as { __env__?: CloudflareEnv }).__env__?.IMAGES;
+  if (fromGlobal) return fromGlobal;
+
+  const fromCloudflare = (globalThis as { Cloudflare?: { env?: CloudflareEnv } }).Cloudflare?.env
+    ?.IMAGES;
+  if (fromCloudflare) return fromCloudflare;
+
+  try {
+    // Cloudflare Vite plugin exposes bindings via `cloudflare:workers`.
+    const mod = (await import(/* @vite-ignore */ "cloudflare:workers")) as {
+      env?: CloudflareEnv;
+    };
+    if (mod.env?.IMAGES) return mod.env.IMAGES;
+  } catch {
+    // Not running on Workers / module unavailable.
+  }
+
+  return;
+}
+
+/** Vercel CDN collapses `https://` → `https:/` in pathnames; IPX still needs a valid URL. */
+export function repairIpxSourceUrl(id: string): string {
+  return id.replace(/^(https?:)\/(?!\/)/, "$1//");
 }
 
 export function ipxTarget(url: string): { id: string; modifiers: Record<string, string> } | null {
@@ -117,11 +141,14 @@ function allowedSource(id: string): URL | undefined {
   }
 }
 
-export async function optimizeWithCloudflare(request: Request, images: ImagesBinding): Promise<Response> {
+export async function optimizeWithCloudflare(
+  request: Request,
+  images: ImagesBinding,
+): Promise<Response> {
   const target = ipxTarget(request.url);
   if (!target) return new Response("Invalid image URL", { status: 400 });
 
-  const source = allowedSource(target.id);
+  const source = allowedSource(repairIpxSourceUrl(target.id));
   if (!source) return new Response("Image host is not allowed", { status: 403 });
 
   const upstream = await fetch(source, { headers: SOURCE_HEADERS, redirect: "follow" });
@@ -132,9 +159,15 @@ export async function optimizeWithCloudflare(request: Request, images: ImagesBin
     return new Response("Image host is not allowed", { status: 403 });
   }
 
-  const { transform, output } = cloudflareOptions(target.modifiers, request.headers.get("Accept") ?? "");
+  const { transform, output } = cloudflareOptions(
+    target.modifiers,
+    request.headers.get("Accept") ?? "",
+  );
   try {
-    const handle = Object.keys(transform).length > 0 ? images.input(upstream.body).transform(transform) : images.input(upstream.body);
+    const handle =
+      Object.keys(transform).length > 0
+        ? images.input(upstream.body).transform(transform)
+        : images.input(upstream.body);
     const result = await handle.output(output);
     return result.response({
       headers: {

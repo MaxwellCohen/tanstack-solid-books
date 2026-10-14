@@ -2,9 +2,10 @@ import { createFileRoute } from "@tanstack/solid-router";
 import { imagesBinding, optimizeWithCloudflare } from "@/lib/images/cloudflare";
 
 async function handleIpx(request: Request): Promise<Response> {
-  const images = imagesBinding(request);
+  const images = await imagesBinding(request);
   if (images) return optimizeWithCloudflare(request, images);
 
+  // Repair Vercel CDN slash normalization (`https://` → `https:/`) before IPX parses.
   const url = new URL(request.url);
   url.pathname = url.pathname.replace(/\/(https?:)\/(?!\/)/, "/$1//");
   const repaired = new Request(url, request);
