@@ -1,0 +1,67 @@
+diff --git a/dist/esm/index.js b/dist/esm/index.js
+index 6add16145c0fa806f394e8488641bcde5029a224..cbdf115185d30a53fced42c50efbd1175c1cfc3c 100644
+--- a/dist/esm/index.js
++++ b/dist/esm/index.js
+@@ -1,4 +1,4 @@
+-import { DEFAULT_PROTOCOL_ALLOWLIST, buildDevStylesUrl, createControlledPromise, deepEqual, escapeHtml, functionalUpdate, hasKeys, isDangerousProtocol, isModuleNotFoundError, isPlainArray, isPlainObject, replaceEqualDeep } from "./utils.js";
++import { DEFAULT_PROTOCOL_ALLOWLIST, buildDevStylesUrl, createControlledPromise, deepEqual, escapeHtml, functionalUpdate, hasKeys, isDangerousProtocol, isModuleNotFoundError, isPlainArray, isPlainObject, isPromise, replaceEqualDeep } from "./utils.js";
+ import { invariant } from "./invariant.js";
+ import { cleanPath, exactPathTest, interpolatePath, joinPaths, removeTrailingSlash, resolvePath, trimPath, trimPathLeft, trimPathRight } from "./path.js";
+ import { isNotFound, notFound } from "./not-found.js";
+@@ -21,4 +21,4 @@ import { retainSearchParams, stripSearchParams } from "./searchMiddleware.js";
+ import { createSerializationAdapter, makeSerovalPlugin, makeSsrSerovalPlugin } from "./ssr/serializer/transformer.js";
+ import { RawStream, createRawStreamDeserializePlugin, createRawStreamRPCPlugin } from "./ssr/serializer/RawStream.js";
+ import { defaultSerovalPlugins } from "./ssr/serializer/seroval-plugins.js";
+-export { BaseRootRoute, BaseRoute, BaseRouteApi, DEFAULT_PROTOCOL_ALLOWLIST, DEV_STYLES_ATTR, PathParamError, RawStream, RouterCore, SearchParamError, TSR_DEFERRED_PROMISE, _getAssetMatches, _getRenderedMatches, appendUniqueUserTags, buildDevStylesUrl, cleanPath, composeRewrites, createControlledPromise, createInlineCssStyleAsset, createNonReactiveMutableStore, createNonReactiveReadonlyStore, createRawStreamDeserializePlugin, createRawStreamRPCPlugin, createRouterConfig, createSerializationAdapter, decode, deepEqual, defaultGetScrollRestorationKey, defaultParseSearch, defaultSerializeError, defaultSerovalPlugins, defaultStringifySearch, defer, encode, escapeHtml, exactPathTest, executeRewriteInput, functionalUpdate, getAssetCrossOrigin, getElementScrollRestorationEntry, getInitialRouterState, getLocationChangeInfo, getManifestScriptFormat, getScriptPreloadAttrs, getStylesheetHref, hasKeys, interpolatePath, invariant, isDangerousProtocol, isMatch, isModuleNotFoundError, isNotFound, isPlainArray, isPlainObject, isRedirect, isResolvedRedirect, joinPaths, lazyFn, makeSerovalPlugin, makeSsrSerovalPlugin, notFound, parseRedirect, parseSearchWith, preloadWarning, redirect, removeTrailingSlash, replaceEqualDeep, resolveManifestAssetLink, resolveManifestCssLink, resolvePath, retainSearchParams, rootRouteId, setupScrollRestoration, storageKey, stringifySearchWith, stripSearchParams, trailingSlashOptions, trimPath, trimPathLeft, trimPathRight };
++export { BaseRootRoute, BaseRoute, BaseRouteApi, DEFAULT_PROTOCOL_ALLOWLIST, DEV_STYLES_ATTR, PathParamError, RawStream, RouterCore, SearchParamError, TSR_DEFERRED_PROMISE, _getAssetMatches, _getRenderedMatches, appendUniqueUserTags, buildDevStylesUrl, cleanPath, composeRewrites, createControlledPromise, createInlineCssStyleAsset, createNonReactiveMutableStore, createNonReactiveReadonlyStore, createRawStreamDeserializePlugin, createRawStreamRPCPlugin, createRouterConfig, createSerializationAdapter, decode, deepEqual, defaultGetScrollRestorationKey, defaultParseSearch, defaultSerializeError, defaultSerovalPlugins, defaultStringifySearch, defer, encode, escapeHtml, exactPathTest, executeRewriteInput, functionalUpdate, getAssetCrossOrigin, getElementScrollRestorationEntry, getInitialRouterState, getLocationChangeInfo, getManifestScriptFormat, getScriptPreloadAttrs, getStylesheetHref, hasKeys, interpolatePath, invariant, isDangerousProtocol, isMatch, isModuleNotFoundError, isNotFound, isPlainArray, isPlainObject, isPromise, isRedirect, isResolvedRedirect, joinPaths, lazyFn, makeSerovalPlugin, makeSsrSerovalPlugin, notFound, parseRedirect, parseSearchWith, preloadWarning, redirect, removeTrailingSlash, replaceEqualDeep, resolveManifestAssetLink, resolveManifestCssLink, resolvePath, retainSearchParams, rootRouteId, setupScrollRestoration, storageKey, stringifySearchWith, stripSearchParams, trailingSlashOptions, trimPath, trimPathLeft, trimPathRight };
+diff --git a/dist/esm/ssr/client.js b/dist/esm/ssr/client.js
+index 1c7b82c344fabf2bf01028150023797655eb4a7a..7358b7712f97bb04d1dc4201c336c14cae062592 100644
+--- a/dist/esm/ssr/client.js
++++ b/dist/esm/ssr/client.js
+@@ -1,4 +1,11 @@
+ import { hydrate } from "../load-client.js";
+ import { mergeHeaders } from "./headers.js";
+ import { json } from "./json.js";
+-export { hydrate, json, mergeHeaders };
++import { createRawStreamDeserializePlugin } from "./serializer/RawStream.js";
++import { makeSerovalPlugin } from "./serializer/transformer.js";
++import { defaultSerovalPlugins } from "./serializer/seroval-plugins.js";
++function createDefaultSerovalPlugins() {
++	return defaultSerovalPlugins;
++}
++const defaultSerovalDeserializerPlugins = defaultSerovalPlugins;
++export { createDefaultSerovalPlugins, createRawStreamDeserializePlugin, defaultSerovalDeserializerPlugins, hydrate, json, makeSerovalPlugin, mergeHeaders };
+diff --git a/dist/esm/ssr/server.js b/dist/esm/ssr/server.js
+index 1783ecc63ce3b7413b956781d3890dee47cce277..69b6d66b38c39544b7041bea55c2cc4a6d53adae 100644
+--- a/dist/esm/ssr/server.js
++++ b/dist/esm/ssr/server.js
+@@ -2,4 +2,6 @@ import { attachRouterServerSsrUtils, getNormalizedURL, getOrigin } from "./ssr-s
+ import { bindSsrResponseToRequest, createSsrStreamResponse, defineHandlerCallback, disposeSsrResponse, disposeSsrResponseDetached, isSsrResponse, normalizeSsrResponse, replaceSsrResponse, stripSsrResponseBody } from "./handlerCallback.js";
+ import { createRequestHandler, waitForRequest } from "./createRequestHandler.js";
+ import { transformPipeableStreamWithRouter, transformReadableStreamWithRouter, transformStreamWithRouter } from "./transformStreamWithRouter.js";
+-export { attachRouterServerSsrUtils, bindSsrResponseToRequest, createRequestHandler, createSsrStreamResponse, defineHandlerCallback, disposeSsrResponse, disposeSsrResponseDetached, getNormalizedURL, getOrigin, isSsrResponse, normalizeSsrResponse, replaceSsrResponse, stripSsrResponseBody, transformPipeableStreamWithRouter, transformReadableStreamWithRouter, transformStreamWithRouter, waitForRequest };
++import { createRawStreamRPCPlugin } from "./serializer/RawStream.js";
++import { defaultSerovalPlugins as defaultSerovalDeserializerPlugins } from "./serializer/seroval-plugins.js";
++export { attachRouterServerSsrUtils, bindSsrResponseToRequest, createRawStreamRPCPlugin, createRequestHandler, createSsrStreamResponse, defaultSerovalDeserializerPlugins, defineHandlerCallback, disposeSsrResponse, disposeSsrResponseDetached, getNormalizedURL, getOrigin, isSsrResponse, normalizeSsrResponse, replaceSsrResponse, stripSsrResponseBody, transformPipeableStreamWithRouter, transformReadableStreamWithRouter, transformStreamWithRouter, waitForRequest };
+diff --git a/dist/esm/utils.js b/dist/esm/utils.js
+index dfb213336ebbf23705b903a08c5ada34a3324520..a6d66537108a4d76165677c2bc8249b1af8b12e5 100644
+--- a/dist/esm/utils.js
++++ b/dist/esm/utils.js
+@@ -165,6 +165,9 @@ function isModuleNotFoundError(error) {
+ 	if (typeof error?.message !== "string") return false;
+ 	return error.message.startsWith("Failed to fetch dynamically imported module") || error.message.startsWith("error loading dynamically imported module") || error.message.startsWith("Importing a module script failed");
+ }
++function isPromise(value) {
++	return Boolean(value && typeof value === "object" && typeof value.then === "function");
++}
+ function findLast(array, predicate) {
+ 	for (let i = array.length - 1; i >= 0; i--) {
+ 		const item = array[i];
+@@ -326,6 +329,6 @@ function arraysEqual(a, b) {
+ 	return true;
+ }
+ //#endregion
+-export { DEFAULT_PROTOCOL_ALLOWLIST, arraysEqual, buildDevStylesUrl, createControlledPromise, decodePath, deepEqual, encodePathLikeUrl, escapeHtml, findLast, functionalUpdate, hasKeys, hasOwn, isDangerousProtocol, isModuleNotFoundError, isPlainArray, isPlainObject, last, nullReplaceEqualDeep, replaceEqualDeep };
++export { DEFAULT_PROTOCOL_ALLOWLIST, arraysEqual, buildDevStylesUrl, createControlledPromise, decodePath, deepEqual, encodePathLikeUrl, escapeHtml, findLast, functionalUpdate, hasKeys, hasOwn, isDangerousProtocol, isModuleNotFoundError, isPlainArray, isPlainObject, isPromise, last, nullReplaceEqualDeep, replaceEqualDeep };
+ 
+ //# sourceMappingURL=utils.js.map
