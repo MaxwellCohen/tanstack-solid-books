@@ -53,7 +53,7 @@
       "lightningcss"
     ],
     "overrides": {
-      "@tanstack/start-server-core": "1.169.43"
+      "@tanstack/start-server-core": "1.169.40"
     }
   }
 }
