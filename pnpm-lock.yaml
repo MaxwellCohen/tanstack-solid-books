@@ -5,7 +5,13 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
+  '@tanstack/router-core': 1.171.22
   '@tanstack/start-server-core': 1.169.40
+
+patchedDependencies:
+  '@tanstack/router-core@1.171.22':
+    hash: dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111
+    path: patches/@tanstack__router-core@1.171.22.patch
 
 importers:
 
@@ -34,7 +40,7 @@ importers:
         version: 2.0.0-rc.8(@solidjs/web@2.0.0-rc.8(solid-js@2.0.0-rc.8))(solid-js@2.0.0-rc.8)
       '@tanstack/solid-router-devtools':
         specifier: 2.0.0-rc.6
-        version: 2.0.0-rc.6(@solidjs/web@2.0.0-rc.8(solid-js@2.0.0-rc.8))(@tanstack/router-core@1.171.37)(@tanstack/solid-router@2.0.0-rc.8(@solidjs/web@2.0.0-rc.8(solid-js@2.0.0-rc.8))(solid-js@2.0.0-rc.8))(csstype@3.2.3)(solid-js@2.0.0-rc.8)
+        version: 2.0.0-rc.6(@solidjs/web@2.0.0-rc.8(solid-js@2.0.0-rc.8))(@tanstack/router-core@1.171.22(patch_hash=dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111))(@tanstack/solid-router@2.0.0-rc.8(@solidjs/web@2.0.0-rc.8(solid-js@2.0.0-rc.8))(solid-js@2.0.0-rc.8))(csstype@3.2.3)(solid-js@2.0.0-rc.8)
       '@tanstack/solid-start':
         specifier: 2.0.0-rc.8
         version: 2.0.0-rc.8(@solidjs/web@2.0.0-rc.8(solid-js@2.0.0-rc.8))(crossws@0.4.15(srvx@0.11.22))(esbuild@0.28.2)(rolldown@1.2.13)(solid-js@2.0.0-rc.8)(vite-plugin-solid@2.11.14(solid-js@2.0.0-rc.8)(vite@8.3.4(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1)))(vite@8.3.4(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))
@@ -1817,19 +1823,11 @@ packages:
     resolution: {integrity: sha512-sitsuRkz4qpTjIAV97S5zFCoeGv0OFd6+VWg3ZcIlQbi5R4NIXfz6ogg51n5w6rvTwSODz/lKWb5dl5tvh2bQw==}
     engines: {node: '>=20.19'}
 
-  '@tanstack/router-core@1.171.35':
-    resolution: {integrity: sha512-fNKsx/rrxppFNmCQ9mPwg4OCb1O3qfLPVrE9FVyyWyRPQk0f0NK5bdJUzTYZQ+T/Ajfllr3SEx9pntM45F5amQ==}
-    engines: {node: '>=20.19'}
-
-  '@tanstack/router-core@1.171.37':
-    resolution: {integrity: sha512-11Le36++mHNeeFIABz4C3PdTWyJ1ilOmGmANOQOypknZwC1xN674al5BUqWuimKasWane1/XSNcEx8NYNHh0+A==}
-    engines: {node: '>=20.19'}
-
   '@tanstack/router-devtools-core@1.168.1':
     resolution: {integrity: sha512-qr4voa4cpSMwQvS3867xkU3AB3MtJbTuovKIy+btjJ/Faju6er9w0nDylmD+005Mk/3YKw9/iueZJl2JAB7JOA==}
     engines: {node: '>=20.19'}
     peerDependencies:
-      '@tanstack/router-core': ^1.171.16
+      '@tanstack/router-core': 1.171.22
       csstype: ^3.0.10
     peerDependenciesMeta:
       csstype:
@@ -1877,7 +1875,7 @@ packages:
     engines: {node: '>=20.19'}
     peerDependencies:
       '@solidjs/web': ^2.0.0-rc.8
-      '@tanstack/router-core': ^1.171.22
+      '@tanstack/router-core': 1.171.22
       '@tanstack/solid-router': ^2.0.0-rc.8
       solid-js: ^2.0.0-rc.8
     peerDependenciesMeta:
@@ -6468,30 +6466,16 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tanstack/router-core@1.171.22':
+  '@tanstack/router-core@1.171.22(patch_hash=dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111)':
     dependencies:
       '@tanstack/history': 1.162.1
       cookie-es: 3.1.1
       seroval: 1.6.9
       seroval-plugins: 1.6.9(seroval@1.6.9)
 
-  '@tanstack/router-core@1.171.35':
+  '@tanstack/router-devtools-core@1.168.1(@tanstack/router-core@1.171.22(patch_hash=dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111))(csstype@3.2.3)':
     dependencies:
-      '@tanstack/history': 1.162.5
-      cookie-es: 3.1.1
-      seroval: 1.6.9
-      seroval-plugins: 1.6.9(seroval@1.6.9)
-
-  '@tanstack/router-core@1.171.37':
-    dependencies:
-      '@tanstack/history': 1.162.5
-      cookie-es: 3.1.1
-      seroval: 1.6.9
-      seroval-plugins: 1.6.9(seroval@1.6.9)
-
-  '@tanstack/router-devtools-core@1.168.1(@tanstack/router-core@1.171.37)(csstype@3.2.3)':
-    dependencies:
-      '@tanstack/router-core': 1.171.37
+      '@tanstack/router-core': 1.171.22(patch_hash=dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111)
       clsx: 2.1.1
       goober: 2.1.19(csstype@3.2.3)
     optionalDependencies:
@@ -6500,7 +6484,7 @@ snapshots:
   '@tanstack/router-generator@1.167.28':
     dependencies:
       '@babel/types': 7.29.8
-      '@tanstack/router-core': 1.171.22
+      '@tanstack/router-core': 1.171.22(patch_hash=dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111)
       '@tanstack/router-utils': 1.162.2
       '@tanstack/virtual-file-routes': 1.162.0
       jiti: 2.7.0
@@ -6513,7 +6497,7 @@ snapshots:
   '@tanstack/router-generator@1.167.43':
     dependencies:
       '@babel/types': 7.29.8
-      '@tanstack/router-core': 1.171.37
+      '@tanstack/router-core': 1.171.22(patch_hash=dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111)
       '@tanstack/router-utils': 1.162.3
       '@tanstack/virtual-file-routes': 1.162.0
       jiti: 2.7.0
@@ -6528,7 +6512,7 @@ snapshots:
       '@babel/core': 7.29.7
       '@babel/template': 7.29.7
       '@babel/types': 7.29.8
-      '@tanstack/router-core': 1.171.22
+      '@tanstack/router-core': 1.171.22(patch_hash=dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111)
       '@tanstack/router-generator': 1.167.28
       '@tanstack/router-utils': 1.162.2
       chokidar: 5.0.0
@@ -6573,14 +6557,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tanstack/solid-router-devtools@2.0.0-rc.6(@solidjs/web@2.0.0-rc.8(solid-js@2.0.0-rc.8))(@tanstack/router-core@1.171.37)(@tanstack/solid-router@2.0.0-rc.8(@solidjs/web@2.0.0-rc.8(solid-js@2.0.0-rc.8))(solid-js@2.0.0-rc.8))(csstype@3.2.3)(solid-js@2.0.0-rc.8)':
+  '@tanstack/solid-router-devtools@2.0.0-rc.6(@solidjs/web@2.0.0-rc.8(solid-js@2.0.0-rc.8))(@tanstack/router-core@1.171.22(patch_hash=dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111))(@tanstack/solid-router@2.0.0-rc.8(@solidjs/web@2.0.0-rc.8(solid-js@2.0.0-rc.8))(solid-js@2.0.0-rc.8))(csstype@3.2.3)(solid-js@2.0.0-rc.8)':
     dependencies:
       '@solidjs/web': 2.0.0-rc.8(solid-js@2.0.0-rc.8)
-      '@tanstack/router-devtools-core': 1.168.1(@tanstack/router-core@1.171.37)(csstype@3.2.3)
+      '@tanstack/router-devtools-core': 1.168.1(@tanstack/router-core@1.171.22(patch_hash=dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111))(csstype@3.2.3)
       '@tanstack/solid-router': 2.0.0-rc.8(@solidjs/web@2.0.0-rc.8(solid-js@2.0.0-rc.8))(solid-js@2.0.0-rc.8)
       solid-js: 2.0.0-rc.8
     optionalDependencies:
-      '@tanstack/router-core': 1.171.37
+      '@tanstack/router-core': 1.171.22(patch_hash=dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111)
     transitivePeerDependencies:
       - csstype
 
@@ -6591,14 +6575,14 @@ snapshots:
       '@solidjs/meta': 0.29.4(solid-js@2.0.0-rc.8)
       '@solidjs/web': 2.0.0-rc.8(solid-js@2.0.0-rc.8)
       '@tanstack/history': 1.162.1
-      '@tanstack/router-core': 1.171.22
+      '@tanstack/router-core': 1.171.22(patch_hash=dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111)
       isbot: 5.2.2
       solid-js: 2.0.0-rc.8
 
   '@tanstack/solid-start-client@2.0.0-rc.8(@solidjs/web@2.0.0-rc.8(solid-js@2.0.0-rc.8))(solid-js@2.0.0-rc.8)':
     dependencies:
       '@solidjs/web': 2.0.0-rc.8(solid-js@2.0.0-rc.8)
-      '@tanstack/router-core': 1.171.22
+      '@tanstack/router-core': 1.171.22(patch_hash=dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111)
       '@tanstack/solid-router': 2.0.0-rc.8(@solidjs/web@2.0.0-rc.8(solid-js@2.0.0-rc.8))(solid-js@2.0.0-rc.8)
       '@tanstack/start-client-core': 1.170.22
       solid-js: 2.0.0-rc.8
@@ -6606,7 +6590,7 @@ snapshots:
   '@tanstack/solid-start-server@2.0.0-rc.8(@solidjs/web@2.0.0-rc.8(solid-js@2.0.0-rc.8))(crossws@0.4.15(srvx@0.11.22))(solid-js@2.0.0-rc.8)':
     dependencies:
       '@solidjs/web': 2.0.0-rc.8(solid-js@2.0.0-rc.8)
-      '@tanstack/router-core': 1.171.22
+      '@tanstack/router-core': 1.171.22(patch_hash=dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111)
       '@tanstack/solid-router': 2.0.0-rc.8(@solidjs/web@2.0.0-rc.8(solid-js@2.0.0-rc.8))(solid-js@2.0.0-rc.8)
       '@tanstack/start-server-core': 1.169.40(crossws@0.4.15(srvx@0.11.22))
       solid-js: 2.0.0-rc.8
@@ -6643,14 +6627,14 @@ snapshots:
 
   '@tanstack/start-client-core@1.170.22':
     dependencies:
-      '@tanstack/router-core': 1.171.22
+      '@tanstack/router-core': 1.171.22(patch_hash=dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111)
       '@tanstack/start-fn-stubs': 1.162.0
       '@tanstack/start-storage-context': 1.167.24
       seroval: 1.6.9
 
   '@tanstack/start-client-core@1.170.35':
     dependencies:
-      '@tanstack/router-core': 1.171.35
+      '@tanstack/router-core': 1.171.22(patch_hash=dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111)
       '@tanstack/start-fn-stubs': 1.162.0
       '@tanstack/start-storage-context': 1.167.37
       seroval: 1.6.9
@@ -6662,7 +6646,7 @@ snapshots:
       '@babel/code-frame': 7.27.1
       '@babel/core': 7.29.7
       '@babel/types': 7.29.8
-      '@tanstack/router-core': 1.171.22
+      '@tanstack/router-core': 1.171.22(patch_hash=dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111)
       '@tanstack/router-generator': 1.167.28
       '@tanstack/router-plugin': 1.168.30(esbuild@0.28.2)(rolldown@1.2.13)(vite-plugin-solid@2.11.14(solid-js@2.0.0-rc.8)(vite@8.3.4(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1)))(vite@8.3.4(@types/node@26.6.5)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15)(yaml@2.9.1))
       '@tanstack/router-utils': 1.162.2
@@ -6698,7 +6682,7 @@ snapshots:
   '@tanstack/start-server-core@1.169.40(crossws@0.4.15(srvx@0.11.22))':
     dependencies:
       '@tanstack/history': 1.162.5
-      '@tanstack/router-core': 1.171.35
+      '@tanstack/router-core': 1.171.22(patch_hash=dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111)
       '@tanstack/start-client-core': 1.170.35
       '@tanstack/start-storage-context': 1.167.37
       fetchdts: 0.1.7
@@ -6709,11 +6693,11 @@ snapshots:
 
   '@tanstack/start-storage-context@1.167.24':
     dependencies:
-      '@tanstack/router-core': 1.171.22
+      '@tanstack/router-core': 1.171.22(patch_hash=dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111)
 
   '@tanstack/start-storage-context@1.167.37':
     dependencies:
-      '@tanstack/router-core': 1.171.35
+      '@tanstack/router-core': 1.171.22(patch_hash=dfdecef2cd1c7a14f83dd4448adbb9b088b386d9998538a3ff681ac4c8368111)
 
   '@tanstack/virtual-file-routes@1.162.0': {}
 
