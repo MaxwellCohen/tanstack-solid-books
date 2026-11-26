@@ -1,0 +1,6 @@
+/* Route-scoped CSS for /feature-tests/css-inlining (marker: ft-css-inline-marker). */
+.ft-css-inline-marker {
+  color: rgb(12, 34, 56);
+  border: 3px dashed rgb(12, 34, 56);
+  padding: 1rem;
+}

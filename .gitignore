@@ -15,3 +15,6 @@ dist-ssr
 .netlify
 __unconfig*
 .env*
+.analyze
+feature-tests/.pw
+test-results
