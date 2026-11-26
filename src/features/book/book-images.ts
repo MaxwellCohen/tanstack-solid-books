@@ -1,5 +1,5 @@
 import { isServer } from "@solidjs/web";
-import { sharedConfig } from "solid-js";
+import { isHydrating } from "solid-js";
 import {
   EMPTY_IMAGE_URL,
   getLargeBookImageUrl,
@@ -20,7 +20,7 @@ export function loadBookCover(
   const src = getOptimizedBookImageUrl(source);
   // Asset readiness must not turn server-rendered content into a client-only
   // hole, or re-suspend content that is already visible during hydration.
-  if (isServer || sharedConfig.hydrating) return source;
+  if (isServer || isHydrating()) return source;
 
   const cached = covers.get(src);
   if (cached !== undefined) {

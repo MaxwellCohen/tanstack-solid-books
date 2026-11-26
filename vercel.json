@@ -5,7 +5,29 @@
   "installCommand": "pnpm install",
   "outputDirectory": ".output/public",
   "images": {
-    "sizes": [16, 32, 48, 64, 96, 128, 160, 256, 320, 384, 400, 480, 640, 750, 828, 960, 1080, 1200, 1920, 2048, 3840],
+    "sizes": [
+      16,
+      32,
+      48,
+      64,
+      96,
+      128,
+      160,
+      256,
+      320,
+      384,
+      400,
+      480,
+      640,
+      750,
+      828,
+      960,
+      1080,
+      1200,
+      1920,
+      2048,
+      3840
+    ],
     "remotePatterns": [
       {
         "hostname": "images.gr-assets.com",
@@ -17,5 +39,12 @@
       }
     ],
     "minimumCacheTTL": 14400
+  },
+  "git": {
+    "deploymentEnabled": {
+      "**": false,
+      "main": true,
+      "optimized": true
+    }
   }
 }

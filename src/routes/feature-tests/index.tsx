@@ -28,10 +28,10 @@ function FeatureIndex() {
         <For each={FEATURES}>
           {(item) => (
             <li>
-              <a class="underline" href={`/feature-tests/${item()[0]}`}>
-                {item()[0]}
+              <a class="underline" href={`/feature-tests/${item[0]}`}>
+                {item[0]}
               </a>{" "}
-              <span class="text-muted text-sm">({item()[1]})</span>
+              <span class="text-muted text-sm">({item[1]})</span>
             </li>
           )}
         </For>
