@@ -1,8 +1,8 @@
 {
   "framework": "tanstack-start-solid",
   "repo": "tanstack-solid-books",
-  "commit": "f14ecbbb1afef63315293d6504ea10e82ca898f2",
-  "ranAt": "2026-11-26T04:58:30.414Z",
+  "commit": "577d9a7e6afce2ac311ae65efc57e3065d53e854",
+  "ranAt": "2026-11-26T05:42:12.088Z",
   "results": {
     "css-inlining": {
       "claimedLabel": "experimental",
@@ -71,7 +71,7 @@
       "claimedLabel": "manual",
       "method": "Hand-rolled inline loader in route head().scripts that injects the script after window load + requestIdleCallback",
       "status": "pass",
-      "evidence": "no <script src=fake-analytics> in HTML: true; loader inline in <head>: true; window load at 211ms, script ran at 414ms (readyState complete)",
+      "evidence": "no <script src=fake-analytics> in HTML: true; loader inline in <head>: true; window load at 70ms, script ran at 138ms (readyState complete)",
       "test": "feature-tests/third-party-scripts.spec.ts"
     },
     "multi-host-deployment": {
