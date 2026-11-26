@@ -3,5 +3,12 @@
   "framework": null,
   "buildCommand": "pnpm build",
   "installCommand": "pnpm install",
-  "outputDirectory": ".output/public"
+  "outputDirectory": ".output/public",
+  "git": {
+    "deploymentEnabled": {
+      "**": false,
+      "main": true,
+      "optimized": true
+    }
+  }
 }
