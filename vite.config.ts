@@ -76,7 +76,32 @@ export default defineConfig(async () => {
     plugins.push(nitro())
   }
 
-  plugins.push(tailwindcss(), tanstackStart(), viteSolid({ ssr: true }))
+  plugins.push(
+    tailwindcss(),
+    tanstackStart({
+      // Feature test (css-inlining): inline route CSS into the SSR <head>.
+      server: { build: { inlineCss: true } },
+      // Feature test (render-modes): prerender exactly one route at build time.
+      // autoStaticPathsDiscovery would otherwise prerender every static route.
+      prerender: { enabled: true, crawlLinks: false, autoStaticPathsDiscovery: false },
+      pages: [{ path: '/feature-tests/render-modes/static', prerender: { enabled: true, crawlLinks: false } }],
+    }),
+    viteSolid({ ssr: true }),
+  )
+
+  // Feature test (bundle-analysis): `ANALYZE=1 vite build` writes a treemap + JSON
+  // for the client environment via rollup-plugin-visualizer.
+  if (process.env.ANALYZE) {
+    const { visualizer } = await import('rollup-plugin-visualizer')
+    for (const template of ['treemap', 'raw-data'] as const) {
+      const plugin = visualizer({
+        filename: `.analyze/client.${template === 'treemap' ? 'html' : 'json'}`,
+        template,
+        gzipSize: true,
+      }) as Plugin
+      plugins.push({ ...plugin, applyToEnvironment: (env) => env.name === 'client' })
+    }
+  }
 
   return {
     server: { port: 3004 },

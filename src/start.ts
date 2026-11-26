@@ -1,8 +1,10 @@
 import { createMiddleware, createStart } from "@tanstack/solid-start";
 import { hostDocumentCacheControl } from "@/lib/catalog-cache";
 
-const catalogHeadersMiddleware = createMiddleware({ type: "request" }).server(async ({ next }) => {
+const catalogHeadersMiddleware = createMiddleware({ type: "request" }).server(async ({ request, next }) => {
   const result = await next();
+  // Feature test (caching): keep the route's own `headers()` Cache-Control.
+  if (new URL(request.url).pathname.startsWith("/feature-tests/caching")) return result;
   const contentType = result.response.headers.get("content-type") ?? "";
   if (!contentType.includes("text/html")) return result;
 

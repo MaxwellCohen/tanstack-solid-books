@@ -12,6 +12,22 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as IdRouteImport } from './routes/$id'
 import { Route as IpxSplatRouteImport } from './routes/[_]ipx.$'
+import { Route as FeatureTestsIndexRouteImport } from './routes/feature-tests/index'
+import { Route as FeatureTestsBundleAnalysisRouteImport } from './routes/feature-tests/bundle-analysis'
+import { Route as FeatureTestsCachingRouteImport } from './routes/feature-tests/caching'
+import { Route as FeatureTestsCssInliningRouteImport } from './routes/feature-tests/css-inlining'
+import { Route as FeatureTestsFontOptimizationRouteImport } from './routes/feature-tests/font-optimization'
+import { Route as FeatureTestsImagePipelineRouteImport } from './routes/feature-tests/image-pipeline'
+import { Route as FeatureTestsIslandsRouteImport } from './routes/feature-tests/islands'
+import { Route as FeatureTestsMultiHostDeploymentRouteImport } from './routes/feature-tests/multi-host-deployment'
+import { Route as FeatureTestsReactivityRouteImport } from './routes/feature-tests/reactivity'
+import { Route as FeatureTestsThirdPartyScriptsRouteImport } from './routes/feature-tests/third-party-scripts'
+import { Route as FeatureTestsRenderModesIndexRouteImport } from './routes/feature-tests/render-modes/index'
+import { Route as FeatureTestsRenderModesClientRouteImport } from './routes/feature-tests/render-modes/client'
+import { Route as FeatureTestsRenderModesSsrRouteImport } from './routes/feature-tests/render-modes/ssr'
+import { Route as FeatureTestsRenderModesStaticRouteImport } from './routes/feature-tests/render-modes/static'
+import { Route as FeatureTestsRoutePrefetchingIndexRouteImport } from './routes/feature-tests/route-prefetching/index'
+import { Route as FeatureTestsRoutePrefetchingTargetRouteImport } from './routes/feature-tests/route-prefetching/target'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +44,248 @@ const IpxSplatRoute = IpxSplatRouteImport.update({
   path: '/_ipx/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FeatureTestsIndexRoute = FeatureTestsIndexRouteImport.update({
+  id: '/feature-tests/',
+  path: '/feature-tests/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeatureTestsBundleAnalysisRoute =
+  FeatureTestsBundleAnalysisRouteImport.update({
+    id: '/feature-tests/bundle-analysis',
+    path: '/feature-tests/bundle-analysis',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FeatureTestsCachingRoute = FeatureTestsCachingRouteImport.update({
+  id: '/feature-tests/caching',
+  path: '/feature-tests/caching',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeatureTestsCssInliningRoute = FeatureTestsCssInliningRouteImport.update({
+  id: '/feature-tests/css-inlining',
+  path: '/feature-tests/css-inlining',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeatureTestsFontOptimizationRoute =
+  FeatureTestsFontOptimizationRouteImport.update({
+    id: '/feature-tests/font-optimization',
+    path: '/feature-tests/font-optimization',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FeatureTestsImagePipelineRoute =
+  FeatureTestsImagePipelineRouteImport.update({
+    id: '/feature-tests/image-pipeline',
+    path: '/feature-tests/image-pipeline',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FeatureTestsIslandsRoute = FeatureTestsIslandsRouteImport.update({
+  id: '/feature-tests/islands',
+  path: '/feature-tests/islands',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeatureTestsMultiHostDeploymentRoute =
+  FeatureTestsMultiHostDeploymentRouteImport.update({
+    id: '/feature-tests/multi-host-deployment',
+    path: '/feature-tests/multi-host-deployment',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FeatureTestsReactivityRoute = FeatureTestsReactivityRouteImport.update({
+  id: '/feature-tests/reactivity',
+  path: '/feature-tests/reactivity',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FeatureTestsThirdPartyScriptsRoute =
+  FeatureTestsThirdPartyScriptsRouteImport.update({
+    id: '/feature-tests/third-party-scripts',
+    path: '/feature-tests/third-party-scripts',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FeatureTestsRenderModesIndexRoute =
+  FeatureTestsRenderModesIndexRouteImport.update({
+    id: '/feature-tests/render-modes/',
+    path: '/feature-tests/render-modes/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FeatureTestsRenderModesClientRoute =
+  FeatureTestsRenderModesClientRouteImport.update({
+    id: '/feature-tests/render-modes/client',
+    path: '/feature-tests/render-modes/client',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FeatureTestsRenderModesSsrRoute =
+  FeatureTestsRenderModesSsrRouteImport.update({
+    id: '/feature-tests/render-modes/ssr',
+    path: '/feature-tests/render-modes/ssr',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FeatureTestsRenderModesStaticRoute =
+  FeatureTestsRenderModesStaticRouteImport.update({
+    id: '/feature-tests/render-modes/static',
+    path: '/feature-tests/render-modes/static',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FeatureTestsRoutePrefetchingIndexRoute =
+  FeatureTestsRoutePrefetchingIndexRouteImport.update({
+    id: '/feature-tests/route-prefetching/',
+    path: '/feature-tests/route-prefetching/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FeatureTestsRoutePrefetchingTargetRoute =
+  FeatureTestsRoutePrefetchingTargetRouteImport.update({
+    id: '/feature-tests/route-prefetching/target',
+    path: '/feature-tests/route-prefetching/target',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$id': typeof IdRoute
   '/_ipx/$': typeof IpxSplatRoute
+  '/feature-tests/bundle-analysis': typeof FeatureTestsBundleAnalysisRoute
+  '/feature-tests/caching': typeof FeatureTestsCachingRoute
+  '/feature-tests/css-inlining': typeof FeatureTestsCssInliningRoute
+  '/feature-tests/font-optimization': typeof FeatureTestsFontOptimizationRoute
+  '/feature-tests/image-pipeline': typeof FeatureTestsImagePipelineRoute
+  '/feature-tests/islands': typeof FeatureTestsIslandsRoute
+  '/feature-tests/multi-host-deployment': typeof FeatureTestsMultiHostDeploymentRoute
+  '/feature-tests/reactivity': typeof FeatureTestsReactivityRoute
+  '/feature-tests/third-party-scripts': typeof FeatureTestsThirdPartyScriptsRoute
+  '/feature-tests/': typeof FeatureTestsIndexRoute
+  '/feature-tests/render-modes/client': typeof FeatureTestsRenderModesClientRoute
+  '/feature-tests/render-modes/ssr': typeof FeatureTestsRenderModesSsrRoute
+  '/feature-tests/render-modes/static': typeof FeatureTestsRenderModesStaticRoute
+  '/feature-tests/route-prefetching/target': typeof FeatureTestsRoutePrefetchingTargetRoute
+  '/feature-tests/render-modes/': typeof FeatureTestsRenderModesIndexRoute
+  '/feature-tests/route-prefetching/': typeof FeatureTestsRoutePrefetchingIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$id': typeof IdRoute
   '/_ipx/$': typeof IpxSplatRoute
+  '/feature-tests/bundle-analysis': typeof FeatureTestsBundleAnalysisRoute
+  '/feature-tests/caching': typeof FeatureTestsCachingRoute
+  '/feature-tests/css-inlining': typeof FeatureTestsCssInliningRoute
+  '/feature-tests/font-optimization': typeof FeatureTestsFontOptimizationRoute
+  '/feature-tests/image-pipeline': typeof FeatureTestsImagePipelineRoute
+  '/feature-tests/islands': typeof FeatureTestsIslandsRoute
+  '/feature-tests/multi-host-deployment': typeof FeatureTestsMultiHostDeploymentRoute
+  '/feature-tests/reactivity': typeof FeatureTestsReactivityRoute
+  '/feature-tests/third-party-scripts': typeof FeatureTestsThirdPartyScriptsRoute
+  '/feature-tests': typeof FeatureTestsIndexRoute
+  '/feature-tests/render-modes/client': typeof FeatureTestsRenderModesClientRoute
+  '/feature-tests/render-modes/ssr': typeof FeatureTestsRenderModesSsrRoute
+  '/feature-tests/render-modes/static': typeof FeatureTestsRenderModesStaticRoute
+  '/feature-tests/route-prefetching/target': typeof FeatureTestsRoutePrefetchingTargetRoute
+  '/feature-tests/render-modes': typeof FeatureTestsRenderModesIndexRoute
+  '/feature-tests/route-prefetching': typeof FeatureTestsRoutePrefetchingIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$id': typeof IdRoute
   '/_ipx/$': typeof IpxSplatRoute
+  '/feature-tests/bundle-analysis': typeof FeatureTestsBundleAnalysisRoute
+  '/feature-tests/caching': typeof FeatureTestsCachingRoute
+  '/feature-tests/css-inlining': typeof FeatureTestsCssInliningRoute
+  '/feature-tests/font-optimization': typeof FeatureTestsFontOptimizationRoute
+  '/feature-tests/image-pipeline': typeof FeatureTestsImagePipelineRoute
+  '/feature-tests/islands': typeof FeatureTestsIslandsRoute
+  '/feature-tests/multi-host-deployment': typeof FeatureTestsMultiHostDeploymentRoute
+  '/feature-tests/reactivity': typeof FeatureTestsReactivityRoute
+  '/feature-tests/third-party-scripts': typeof FeatureTestsThirdPartyScriptsRoute
+  '/feature-tests/': typeof FeatureTestsIndexRoute
+  '/feature-tests/render-modes/client': typeof FeatureTestsRenderModesClientRoute
+  '/feature-tests/render-modes/ssr': typeof FeatureTestsRenderModesSsrRoute
+  '/feature-tests/render-modes/static': typeof FeatureTestsRenderModesStaticRoute
+  '/feature-tests/route-prefetching/target': typeof FeatureTestsRoutePrefetchingTargetRoute
+  '/feature-tests/render-modes/': typeof FeatureTestsRenderModesIndexRoute
+  '/feature-tests/route-prefetching/': typeof FeatureTestsRoutePrefetchingIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$id' | '/_ipx/$'
+  fullPaths:
+    | '/'
+    | '/$id'
+    | '/_ipx/$'
+    | '/feature-tests/bundle-analysis'
+    | '/feature-tests/caching'
+    | '/feature-tests/css-inlining'
+    | '/feature-tests/font-optimization'
+    | '/feature-tests/image-pipeline'
+    | '/feature-tests/islands'
+    | '/feature-tests/multi-host-deployment'
+    | '/feature-tests/reactivity'
+    | '/feature-tests/third-party-scripts'
+    | '/feature-tests/'
+    | '/feature-tests/render-modes/client'
+    | '/feature-tests/render-modes/ssr'
+    | '/feature-tests/render-modes/static'
+    | '/feature-tests/route-prefetching/target'
+    | '/feature-tests/render-modes/'
+    | '/feature-tests/route-prefetching/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$id' | '/_ipx/$'
-  id: '__root__' | '/' | '/$id' | '/_ipx/$'
+  to:
+    | '/'
+    | '/$id'
+    | '/_ipx/$'
+    | '/feature-tests/bundle-analysis'
+    | '/feature-tests/caching'
+    | '/feature-tests/css-inlining'
+    | '/feature-tests/font-optimization'
+    | '/feature-tests/image-pipeline'
+    | '/feature-tests/islands'
+    | '/feature-tests/multi-host-deployment'
+    | '/feature-tests/reactivity'
+    | '/feature-tests/third-party-scripts'
+    | '/feature-tests'
+    | '/feature-tests/render-modes/client'
+    | '/feature-tests/render-modes/ssr'
+    | '/feature-tests/render-modes/static'
+    | '/feature-tests/route-prefetching/target'
+    | '/feature-tests/render-modes'
+    | '/feature-tests/route-prefetching'
+  id:
+    | '__root__'
+    | '/'
+    | '/$id'
+    | '/_ipx/$'
+    | '/feature-tests/bundle-analysis'
+    | '/feature-tests/caching'
+    | '/feature-tests/css-inlining'
+    | '/feature-tests/font-optimization'
+    | '/feature-tests/image-pipeline'
+    | '/feature-tests/islands'
+    | '/feature-tests/multi-host-deployment'
+    | '/feature-tests/reactivity'
+    | '/feature-tests/third-party-scripts'
+    | '/feature-tests/'
+    | '/feature-tests/render-modes/client'
+    | '/feature-tests/render-modes/ssr'
+    | '/feature-tests/render-modes/static'
+    | '/feature-tests/route-prefetching/target'
+    | '/feature-tests/render-modes/'
+    | '/feature-tests/route-prefetching/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   IdRoute: typeof IdRoute
   IpxSplatRoute: typeof IpxSplatRoute
+  FeatureTestsBundleAnalysisRoute: typeof FeatureTestsBundleAnalysisRoute
+  FeatureTestsCachingRoute: typeof FeatureTestsCachingRoute
+  FeatureTestsCssInliningRoute: typeof FeatureTestsCssInliningRoute
+  FeatureTestsFontOptimizationRoute: typeof FeatureTestsFontOptimizationRoute
+  FeatureTestsImagePipelineRoute: typeof FeatureTestsImagePipelineRoute
+  FeatureTestsIslandsRoute: typeof FeatureTestsIslandsRoute
+  FeatureTestsMultiHostDeploymentRoute: typeof FeatureTestsMultiHostDeploymentRoute
+  FeatureTestsReactivityRoute: typeof FeatureTestsReactivityRoute
+  FeatureTestsThirdPartyScriptsRoute: typeof FeatureTestsThirdPartyScriptsRoute
+  FeatureTestsIndexRoute: typeof FeatureTestsIndexRoute
+  FeatureTestsRenderModesClientRoute: typeof FeatureTestsRenderModesClientRoute
+  FeatureTestsRenderModesSsrRoute: typeof FeatureTestsRenderModesSsrRoute
+  FeatureTestsRenderModesStaticRoute: typeof FeatureTestsRenderModesStaticRoute
+  FeatureTestsRoutePrefetchingTargetRoute: typeof FeatureTestsRoutePrefetchingTargetRoute
+  FeatureTestsRenderModesIndexRoute: typeof FeatureTestsRenderModesIndexRoute
+  FeatureTestsRoutePrefetchingIndexRoute: typeof FeatureTestsRoutePrefetchingIndexRoute
 }
 
 declare module '@tanstack/solid-router' {
@@ -82,6 +311,118 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof IpxSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/feature-tests/': {
+      id: '/feature-tests/'
+      path: '/feature-tests'
+      fullPath: '/feature-tests/'
+      preLoaderRoute: typeof FeatureTestsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feature-tests/bundle-analysis': {
+      id: '/feature-tests/bundle-analysis'
+      path: '/feature-tests/bundle-analysis'
+      fullPath: '/feature-tests/bundle-analysis'
+      preLoaderRoute: typeof FeatureTestsBundleAnalysisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feature-tests/caching': {
+      id: '/feature-tests/caching'
+      path: '/feature-tests/caching'
+      fullPath: '/feature-tests/caching'
+      preLoaderRoute: typeof FeatureTestsCachingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feature-tests/css-inlining': {
+      id: '/feature-tests/css-inlining'
+      path: '/feature-tests/css-inlining'
+      fullPath: '/feature-tests/css-inlining'
+      preLoaderRoute: typeof FeatureTestsCssInliningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feature-tests/font-optimization': {
+      id: '/feature-tests/font-optimization'
+      path: '/feature-tests/font-optimization'
+      fullPath: '/feature-tests/font-optimization'
+      preLoaderRoute: typeof FeatureTestsFontOptimizationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feature-tests/image-pipeline': {
+      id: '/feature-tests/image-pipeline'
+      path: '/feature-tests/image-pipeline'
+      fullPath: '/feature-tests/image-pipeline'
+      preLoaderRoute: typeof FeatureTestsImagePipelineRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feature-tests/islands': {
+      id: '/feature-tests/islands'
+      path: '/feature-tests/islands'
+      fullPath: '/feature-tests/islands'
+      preLoaderRoute: typeof FeatureTestsIslandsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feature-tests/multi-host-deployment': {
+      id: '/feature-tests/multi-host-deployment'
+      path: '/feature-tests/multi-host-deployment'
+      fullPath: '/feature-tests/multi-host-deployment'
+      preLoaderRoute: typeof FeatureTestsMultiHostDeploymentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feature-tests/reactivity': {
+      id: '/feature-tests/reactivity'
+      path: '/feature-tests/reactivity'
+      fullPath: '/feature-tests/reactivity'
+      preLoaderRoute: typeof FeatureTestsReactivityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feature-tests/third-party-scripts': {
+      id: '/feature-tests/third-party-scripts'
+      path: '/feature-tests/third-party-scripts'
+      fullPath: '/feature-tests/third-party-scripts'
+      preLoaderRoute: typeof FeatureTestsThirdPartyScriptsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feature-tests/render-modes/': {
+      id: '/feature-tests/render-modes/'
+      path: '/feature-tests/render-modes'
+      fullPath: '/feature-tests/render-modes/'
+      preLoaderRoute: typeof FeatureTestsRenderModesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feature-tests/render-modes/client': {
+      id: '/feature-tests/render-modes/client'
+      path: '/feature-tests/render-modes/client'
+      fullPath: '/feature-tests/render-modes/client'
+      preLoaderRoute: typeof FeatureTestsRenderModesClientRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feature-tests/render-modes/ssr': {
+      id: '/feature-tests/render-modes/ssr'
+      path: '/feature-tests/render-modes/ssr'
+      fullPath: '/feature-tests/render-modes/ssr'
+      preLoaderRoute: typeof FeatureTestsRenderModesSsrRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feature-tests/render-modes/static': {
+      id: '/feature-tests/render-modes/static'
+      path: '/feature-tests/render-modes/static'
+      fullPath: '/feature-tests/render-modes/static'
+      preLoaderRoute: typeof FeatureTestsRenderModesStaticRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feature-tests/route-prefetching/': {
+      id: '/feature-tests/route-prefetching/'
+      path: '/feature-tests/route-prefetching'
+      fullPath: '/feature-tests/route-prefetching/'
+      preLoaderRoute: typeof FeatureTestsRoutePrefetchingIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/feature-tests/route-prefetching/target': {
+      id: '/feature-tests/route-prefetching/target'
+      path: '/feature-tests/route-prefetching/target'
+      fullPath: '/feature-tests/route-prefetching/target'
+      preLoaderRoute: typeof FeatureTestsRoutePrefetchingTargetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +430,24 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   IdRoute: IdRoute,
   IpxSplatRoute: IpxSplatRoute,
+  FeatureTestsBundleAnalysisRoute: FeatureTestsBundleAnalysisRoute,
+  FeatureTestsCachingRoute: FeatureTestsCachingRoute,
+  FeatureTestsCssInliningRoute: FeatureTestsCssInliningRoute,
+  FeatureTestsFontOptimizationRoute: FeatureTestsFontOptimizationRoute,
+  FeatureTestsImagePipelineRoute: FeatureTestsImagePipelineRoute,
+  FeatureTestsIslandsRoute: FeatureTestsIslandsRoute,
+  FeatureTestsMultiHostDeploymentRoute: FeatureTestsMultiHostDeploymentRoute,
+  FeatureTestsReactivityRoute: FeatureTestsReactivityRoute,
+  FeatureTestsThirdPartyScriptsRoute: FeatureTestsThirdPartyScriptsRoute,
+  FeatureTestsIndexRoute: FeatureTestsIndexRoute,
+  FeatureTestsRenderModesClientRoute: FeatureTestsRenderModesClientRoute,
+  FeatureTestsRenderModesSsrRoute: FeatureTestsRenderModesSsrRoute,
+  FeatureTestsRenderModesStaticRoute: FeatureTestsRenderModesStaticRoute,
+  FeatureTestsRoutePrefetchingTargetRoute:
+    FeatureTestsRoutePrefetchingTargetRoute,
+  FeatureTestsRenderModesIndexRoute: FeatureTestsRenderModesIndexRoute,
+  FeatureTestsRoutePrefetchingIndexRoute:
+    FeatureTestsRoutePrefetchingIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
