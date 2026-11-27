@@ -2,10 +2,21 @@
 export const CATALOG_CACHE_REVALIDATE_SECONDS = 3600;
 export const CATALOG_CACHE_EXPIRE_SECONDS = 86400;
 
-/** Match next-books HTML Cache-Control per host (Vercel vs Netlify/Cloudflare/local). */
-export const VERCEL_DOCUMENT_CACHE_CONTROL = "public, max-age=0, must-revalidate";
-export const PRIVATE_DOCUMENT_CACHE_CONTROL =
-  "private, no-cache, no-store, max-age=0, must-revalidate";
+/**
+ * Route `headers()` for the catalog pages (home and /$id). Browsers always
+ * revalidate; the host CDN keeps the page for an hour and serves a stale copy
+ * for a day while it refreshes. Vercel and Netlify both read
+ * `CDN-Cache-Control`; Netlify's own header adds `durable` so every edge node
+ * shares one cached copy.
+ */
+export function catalogPageHeaders(): Record<string, string> {
+  const cdn = `public, s-maxage=${CATALOG_CACHE_REVALIDATE_SECONDS}, stale-while-revalidate=${CATALOG_CACHE_EXPIRE_SECONDS}`;
+  return {
+    "Cache-Control": "public, max-age=0, must-revalidate",
+    "CDN-Cache-Control": cdn,
+    "Netlify-CDN-Cache-Control": `${cdn}, durable`,
+  };
+}
 
 const TTL_MS = CATALOG_CACHE_REVALIDATE_SECONDS * 1000;
 
@@ -20,11 +31,6 @@ function isVercel() {
 
 function isNetlify() {
   return typeof process !== "undefined" && Boolean(process.env.NETLIFY) && !process.env.CLOUDFLARE;
-}
-
-/** Public document Cache-Control matching next-books on this host. */
-export function hostDocumentCacheControl(): string {
-  return isVercel() ? VERCEL_DOCUMENT_CACHE_CONTROL : PRIVATE_DOCUMENT_CACHE_CONTROL;
 }
 
 function memoryGet<T>(key: string): T | undefined {

@@ -1,6 +1,7 @@
 import { createFileRoute, useRouterState } from "@tanstack/solid-router";
 import { createMemo, Errored, isPending, latest, Loading } from "solid-js";
 import { Button } from "@/components/ui/button";
+import { catalogPageHeaders } from "@/lib/catalog-cache";
 import { ErrorState } from "@/components/ui/error-state";
 import { getBooksCountFn, getBooksPageFn } from "@/features/book/book.functions";
 import type { BookSummary } from "@/features/book/book-types";
@@ -26,6 +27,7 @@ export const Route = createFileRoute("/")({
     searchParams: deps,
     totalResults: getBooksCountFn({ data: deps }),
   }),
+  headers: catalogPageHeaders,
   head: () => ({
     meta: [{ title: "Books · TanStack Solid Books" }],
   }),
