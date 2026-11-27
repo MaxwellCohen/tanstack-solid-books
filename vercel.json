@@ -40,6 +40,7 @@
     ],
     "minimumCacheTTL": 14400
   },
+  "ignoreCommand": "case \"$VERCEL_PROJECT_PRODUCTION_URL\" in \"\") false;; *-optimized*) [ \"$VERCEL_GIT_COMMIT_REF\" != optimized ];; *) [ \"$VERCEL_GIT_COMMIT_REF\" != main ];; esac",
   "git": {
     "deploymentEnabled": {
       "**": false,
