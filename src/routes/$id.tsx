@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/solid-router";
 import { createMemo, Errored, Loading, Show } from "solid-js";
 import { Button } from "@/components/ui/button";
+import { catalogPageHeaders } from "@/lib/catalog-cache";
 import { EmptyState } from "@/components/ui/empty-state";
 import { ErrorState } from "@/components/ui/error-state";
 import { getBookByIdFn } from "@/features/book/book.functions";
@@ -18,6 +19,7 @@ export const Route = createFileRoute("/$id")({
   loader: ({ deps, params }): BookLoaderData => ({
     book: getBookByIdFn({ data: { delay: deps.delay, id: params.id } }),
   }),
+  headers: catalogPageHeaders,
   head: () => ({
     meta: [{ title: "Book · TanStack Solid Books" }],
   }),
